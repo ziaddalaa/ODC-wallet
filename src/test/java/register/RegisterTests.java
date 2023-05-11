@@ -28,4 +28,23 @@ public class RegisterTests extends BaseTests {
                 "Sign up successfully");
     }
 
+    @Test
+    public void testSignupFailed() {
+        SignupPage signupPage = homePage.clickSignupLogin();
+        signupPage.clickParent();
+        signupPage.clickSignUp();
+
+
+        signupPage.setFirstNameField("Ziad");
+        signupPage.setLastNameField("Alaa");
+        signupPage.setEmailField("ziad@test.com");
+        signupPage.setPassword("12345678");
+        signupPage.setChildNameField("Test Child");
+        signupPage.setChildPhoneField("0101010");
+        signupPage.setChildPasswordField("12345678");
+        signupPage.clickRegisterButton();
+
+        assertEquals(signupPage.getAlertText(),
+                "There Error, message: Parrent Phone is already in use!");
+    }
 }
